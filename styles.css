@@ -348,6 +348,65 @@ section {
     color: white;
 }
 
+/* Featured Member (Professor) Styles */
+.featured-member {
+    border: 2px solid #2563eb;
+    position: relative;
+}
+
+.featured-member::before {
+    content: "实验室负责人";
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: #2563eb;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.professor-photo {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+}
+
+.photo-placeholder i {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.photo-label {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+/* Professor Photo Upload Area */
+.photo-upload-hint {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-align: center;
+    white-space: nowrap;
+}
+
 .member-info h3 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
@@ -379,6 +438,90 @@ section {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 500;
+}
+
+/* Professor Detail Section */
+.professor-detail {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 3rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.detail-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.detail-header h3 {
+    font-size: 1.8rem;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.detail-header p {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+.detail-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.detail-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.detail-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.detail-section i {
+    color: #2563eb;
+    font-size: 1.1rem;
+}
+
+.detail-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-section li {
+    padding: 0.5rem 0;
+    color: #4b5563;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.detail-section li::before {
+    content: "▸";
+    color: #2563eb;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.detail-section li:hover {
+    color: #1f2937;
+    background: #f3f4f6;
+    padding-left: 1.8rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 /* Research Section */
