@@ -407,6 +407,19 @@ section {
     white-space: nowrap;
 }
 
+/* Professor Image Styles */
+.professor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.professor-img:hover {
+    transform: scale(1.05);
+}
+
 .member-info h3 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
