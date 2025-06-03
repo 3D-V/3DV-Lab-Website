@@ -1,0 +1,42 @@
+MIT License
+
+Copyright (c) 2024 HDU-3DV Lab (杭州电子科技大学三维视觉实验室)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+本项目由杭州电子科技大学三维视觉实验室(HDU-3DV Lab)开发和维护。
+
+项目包含的内容：
+- 实验室官方网站源代码
+- 网站设计和布局
+- 交互功能和动画效果
+- 响应式设计实现
+
+使用条款：
+1. 允许自由使用、修改和分发本项目代码
+2. 商业使用需保留版权声明
+3. 不得用于违法或有害目的
+4. 实验室保留对项目内容的最终解释权
+
+联系方式：
+- 邮箱：3dvlab@hdu.edu.cn
+- 地址：浙江省杭州市钱塘区白杨街道2号大街1158号
+        杭州电子科技大学计算机学院

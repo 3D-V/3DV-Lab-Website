@@ -1,0 +1,49 @@
+# GitHub Pages Configuration for HDU-3DV Lab Website
+
+# Site settings
+title: "HDU-3DV Lab | 杭州电子科技大学三维视觉实验室"
+description: "杭州电子科技大学三维视觉实验室官方网站 - 专注于人工智能、计算机视觉、医学影像分析等前沿技术研究"
+url: "https://your-username.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - extract_ppt_content.py
+  - ppt_content.json
+  - .gitignore
+
+# Include files
+include:
+  - _pages
+
+# SEO settings
+lang: zh-CN
+author: "HDU-3DV Lab"
+
+# Social media and contact
+email: "3dvlab@hdu.edu.cn"
+university: "杭州电子科技大学"
+college: "计算机学院"
+
+# Google Analytics (optional)
+# google_analytics: "UA-XXXXXXXXX-X"
+
+# Theme settings (if using a Jekyll theme)
+# theme: minima
+
+# Custom variables
+lab_name: "HDU-3DV Lab"
+lab_full_name: "杭州电子科技大学三维视觉实验室"
+established_year: "2014"
+location: "杭州, 浙江, 中国"

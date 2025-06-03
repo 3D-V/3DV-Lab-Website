@@ -1,0 +1,86 @@
+# HDU-3DV Lab Website .gitignore
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+
+# Python Files (for PPT extraction script)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Jekyll Files
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Node.js (if using npm for dependencies)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Backup Files
+*.bak
+*.backup
+
+# Local Configuration
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Images (uncomment if you want to ignore images)
+# *.jpg
+# *.jpeg
+# *.png
+# *.gif
+# *.svg
+
+# Documents
+# *.pdf
+# *.doc
+# *.docx
+# *.ppt
+# *.pptx
