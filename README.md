@@ -19,7 +19,7 @@ HDU-3DV实验室隶属于杭州电子科技大学计算机学院，是一个专�
 
 ### 👥 核心团队
 
-- **秦飞巍教授**: IEEE Fellow, 博士生导师，浙江省级人才
+- **秦飞巍教授**: IEEE Fellow, 博士生导师，浙江省级人才，CAD&图形学专家，多个IEEE期刊审稿人
 - **赵辽英教授**: 硕士生导师，模式识别专家
 - **张大兴副教授**: 信息安全与多媒体技术专家
 - **王烨茹讲师**: 光学工程博士，华为工程经验
@@ -104,12 +104,12 @@ git push origin main
 
 - **地址**: 浙江省杭州市钱塘区白杨街道2号大街1158号，杭州电子科技大学计算机学院
 - **邮箱**: 3dvlab@hdu.edu.cn
-- **网站**: [杭州电子科技大学](https://www.hdu.edu.cn) | [计算机学院](https://cs.hdu.edu.cn)
+- **网站**: [杭州电子科技大学](https://www.hdu.edu.cn) | [计算机学院](https://computer.hdu.edu.cn/main.htm)
 
 ## 🔗 相关链接
 
 - [杭州电子科技大学](https://www.hdu.edu.cn)
-- [计算机学院](https://cs.hdu.edu.cn)
+- [计算机学院](https://computer.hdu.edu.cn/main.htm)
 - [清华大学BIRTH Lab](https://birth.tsinghua.edu.cn)
 - [香港中文大学SRIBD](https://sribd.cn)
 
