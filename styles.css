@@ -84,6 +84,7 @@ body {
     color: white;
     position: relative;
     overflow: hidden;
+    padding-top: 80px; /* 为固定导航栏留出空间 */
 }
 
 .hero-container {
@@ -223,6 +224,13 @@ body {
 /* Section Styles */
 section {
     padding: 5rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure proper spacing for fixed navbar */
+section:first-of-type {
+    padding-top: 6rem;
 }
 
 .section-header {
@@ -413,11 +421,25 @@ section {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-radius: 50%;
     transition: transform 0.3s ease;
 }
 
 .professor-img:hover {
     transform: scale(1.05);
+}
+
+/* General member image styles for all team members */
+.member-image {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
 }
 
 .member-info h3 {
