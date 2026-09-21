@@ -52,18 +52,61 @@
     }
 
     /* --------------------------------------------------------
-       Team member detail accordions
+       Team member details — dialog overlay
+       The member's .detail-content node is adopted into the modal
+       while open, then returned to its card on close.
     -------------------------------------------------------- */
+    const detailModal = document.getElementById('detailModal');
+    const modalBody = document.getElementById('detailModalBody');
+    const modalTitle = document.getElementById('detailModalTitle');
+    const modalSub = document.getElementById('detailModalSub');
+    let activeToggle = null;
+    let activeContent = null;
+    let contentHome = null;
+
+    function openDetailModal(btn) {
+        if (!detailModal || !modalBody) return;
+        const panel = document.getElementById(btn.getAttribute('aria-controls'));
+        const content = panel && panel.querySelector('.detail-content');
+        if (!content) return;
+        const member = btn.closest('.team-member');
+        const nameEl = member ? member.querySelector('h3') : null;
+        const posEl = member ? member.querySelector('.position') : null;
+        modalTitle.textContent = nameEl ? nameEl.textContent : '详细介绍';
+        modalSub.textContent = posEl ? posEl.textContent : '';
+        activeToggle = btn;
+        activeContent = content;
+        contentHome = content.parentNode;
+        modalBody.appendChild(content);
+        detailModal.classList.add('open');
+        detailModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        const closeBtn = detailModal.querySelector('.detail-modal-close');
+        if (closeBtn) closeBtn.focus();
+    }
+
+    function closeDetailModal() {
+        if (!detailModal || !detailModal.classList.contains('open')) return;
+        detailModal.classList.remove('open');
+        detailModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        if (activeContent && contentHome) contentHome.appendChild(activeContent);
+        if (activeToggle) activeToggle.focus();
+        activeToggle = activeContent = contentHome = null;
+    }
+
     document.querySelectorAll('.member-toggle').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var panel = document.getElementById(btn.getAttribute('aria-controls'));
-            if (!panel) return;
-            var open = panel.classList.toggle('open');
-            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-            var label = btn.querySelector('span');
-            if (label) label.textContent = open ? '收起介绍' : '详细介绍';
-        });
+        btn.addEventListener('click', function () { openDetailModal(btn); });
     });
+
+    if (detailModal) {
+        detailModal.querySelectorAll('[data-close]').forEach(function (el) {
+            el.addEventListener('click', closeDetailModal);
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeDetailModal();
+        });
+    }
 
     /* --------------------------------------------------------
        Publication figures: shimmer skeleton while loading,

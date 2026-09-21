@@ -891,7 +891,7 @@ section {
 }
 
 /* ============================================================
-   Team member detail accordion (collapsible inside cards)
+   Team member details — dialog overlay (no inline vertical unfold)
    ============================================================ */
 .member-toggle {
     margin-top: 1.4rem;
@@ -912,61 +912,121 @@ section {
 }
 
 .member-toggle::after {
-    content: "▾";
-    font-size: 0.75rem;
-}
-
-.member-toggle[aria-expanded="true"]::after {
-    content: "▴";
+    content: "↗";
+    font-size: 0.8rem;
 }
 
 .member-toggle:hover {
     background: rgba(200, 164, 93, 0.2);
 }
 
+/* inline holder stays empty — its content is moved into the modal while open */
 .member-detail {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+    display: none;
 }
 
-.member-detail > div {
+body.modal-open {
     overflow: hidden;
-    min-height: 0;
 }
 
-.member-detail.open {
-    grid-template-rows: 1fr;
-}
-
-/* content fades/rises in as the panel unfolds (and staggers by section) */
-.member-detail .detail-content {
+.detail-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.2rem;
     opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
-.member-detail.open .detail-content {
+.detail-modal.open {
     opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease 0.16s, transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) 0.16s;
+    visibility: visible;
 }
 
-.member-detail .detail-section {
+.detail-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 10, 13, 0.62);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.detail-modal-card {
+    position: relative;
+    width: min(760px, 100%);
+    max-height: min(84vh, 880px);
+    overflow-y: auto;
+    background: var(--card);
+    border: 1px solid rgba(200, 164, 93, 0.4);
+    border-radius: 20px;
+    padding: 2.3rem 2.4rem 2rem;
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.45);
+    transform: translateY(28px) scale(0.96);
     opacity: 0;
-    transform: translateY(14px);
+    transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.4s ease;
 }
 
-.member-detail.open .detail-section {
+.detail-modal.open .detail-modal-card {
+    transform: none;
+    opacity: 1;
+}
+
+.detail-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(200, 164, 93, 0.45);
+    background: var(--paper);
+    color: #85662f;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.detail-modal-close:hover {
+    background: var(--gold-tint);
+    transform: rotate(90deg);
+}
+
+.detail-modal-title {
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+    padding-right: 3rem;
+}
+
+.detail-modal-sub {
+    color: var(--gold-deep);
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+    padding-right: 3rem;
+}
+
+/* sections cascade in as the dialog lands */
+.detail-modal .detail-section {
+    opacity: 0;
+    transform: translateY(16px);
+}
+
+.detail-modal.open .detail-section {
     animation: section-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
 
-.member-detail.open .detail-section:nth-child(1) { animation-delay: 0.14s; }
-.member-detail.open .detail-section:nth-child(2) { animation-delay: 0.20s; }
-.member-detail.open .detail-section:nth-child(3) { animation-delay: 0.26s; }
-.member-detail.open .detail-section:nth-child(4) { animation-delay: 0.32s; }
-.member-detail.open .detail-section:nth-child(5) { animation-delay: 0.38s; }
-.member-detail.open .detail-section:nth-child(6) { animation-delay: 0.44s; }
+.detail-modal.open .detail-section:nth-child(1) { animation-delay: 0.12s; }
+.detail-modal.open .detail-section:nth-child(2) { animation-delay: 0.18s; }
+.detail-modal.open .detail-section:nth-child(3) { animation-delay: 0.24s; }
+.detail-modal.open .detail-section:nth-child(4) { animation-delay: 0.30s; }
+.detail-modal.open .detail-section:nth-child(5) { animation-delay: 0.36s; }
+.detail-modal.open .detail-section:nth-child(6) { animation-delay: 0.42s; }
 
 @keyframes section-in {
     to { opacity: 1; transform: translateY(0); }
@@ -1808,6 +1868,18 @@ body.js .pub-figure img {
         padding: 1rem;
     }
 
+    .detail-modal {
+        padding: 1.4rem 0.9rem;
+    }
+
+    .detail-modal-card {
+        padding: 1.7rem 1.3rem 1.5rem;
+    }
+
+    .detail-modal-title {
+        font-size: 1.3rem;
+    }
+
     .pub-year {
         font-size: 1.6rem;
     }
@@ -1839,8 +1911,7 @@ body.js .pub-figure img {
         transform: none;
     }
 
-    .member-detail .detail-content,
-    .member-detail .detail-section {
+    .detail-modal .detail-section {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;

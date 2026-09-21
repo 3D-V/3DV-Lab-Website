@@ -414,7 +414,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>邮箱</h4>
-                            <p>实验室邮箱：3dvlab@hdu.edu.cn<br>秦飞巍：qinfeiwei@hdu.edu.cn<br>余钰靖：yuwenjing@hdu.edu.cn</p>
+                            <p>qinfeiwei@hdu.edu.cn<br>yuwenjing@hdu.edu.cn</p>
                         </div>
                     </div>
                 </div>
@@ -445,6 +445,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Member detail modal (content is moved in from each member card) -->
+    <div class="detail-modal" id="detailModal" aria-hidden="true">
+        <div class="detail-modal-backdrop" data-close></div>
+        <div class="detail-modal-card" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
+            <button class="detail-modal-close" data-close aria-label="关闭详细介绍"><i class="fas fa-times"></i></button>
+            <h3 class="detail-modal-title" id="detailModalTitle"></h3>
+            <p class="detail-modal-sub" id="detailModalSub"></p>
+            <div class="detail-modal-body" id="detailModalBody"></div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
