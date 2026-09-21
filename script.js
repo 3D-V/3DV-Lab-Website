@@ -127,7 +127,9 @@
             }
         });
         navLinks.forEach(function (link) {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            const href = link.getAttribute('href') || '';
+            if (href.charAt(0) !== '#') return; // cross-page links keep their markup state
+            link.classList.toggle('active', href === '#' + current);
         });
 
         scrollTicking = false;
