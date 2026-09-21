@@ -1103,7 +1103,30 @@ section {
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid rgba(200, 164, 93, 0.25);
-    background: var(--ink-2);
+    /* shimmer skeleton sweeps while the figure downloads */
+    background: linear-gradient(100deg, #e9e6df 42%, #f4f1ea 50%, #e9e6df 58%);
+    background-size: 220% 100%;
+    animation: pub-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes pub-shimmer {
+    from { background-position: 130% 0; }
+    to { background-position: -30% 0; }
+}
+
+/* hidden until decoded only when JS is active (no-JS keeps figures visible) */
+body.js .pub-figure img {
+    opacity: 0;
+}
+
+.pub-figure img.is-loaded {
+    opacity: 1;
+    animation: pub-img-in 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes pub-img-in {
+    from { opacity: 0; transform: scale(1.045); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .pub-figure img {

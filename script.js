@@ -66,6 +66,19 @@
     });
 
     /* --------------------------------------------------------
+       Publication figures: shimmer skeleton while loading,
+       fade each image in once it has decoded.
+    -------------------------------------------------------- */
+    document.body.classList.add('js');
+
+    document.querySelectorAll('.pub-figure img').forEach(function (img) {
+        function mark() { img.classList.add('is-loaded'); }
+        if (img.complete && img.naturalWidth > 0) { mark(); return; }
+        img.addEventListener('load', mark);
+        img.addEventListener('error', function () { window.setTimeout(mark, 80); });
+    });
+
+    /* --------------------------------------------------------
        Smooth scrolling for anchor links
     -------------------------------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
