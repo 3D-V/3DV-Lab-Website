@@ -109,17 +109,58 @@
     }
 
     /* --------------------------------------------------------
-       Publication figures: shimmer skeleton while loading,
-       fade each image in once it has decoded.
+       Publication figures — async, scroll-paced loading.
+       Native lazy-loading prefetches a large radius, so a whole
+       wave of figures fetches and pops in at once. Take over:
+       park pending figures on a transparent pixel (aborting the
+       wave), fetch each as it approaches the viewport, and reveal
+       finished figures with a slight stagger so even a finishing
+       wave fades in one after another.
     -------------------------------------------------------- */
     document.body.classList.add('js');
 
-    document.querySelectorAll('.pub-figure img').forEach(function (img) {
-        function mark() { img.classList.add('is-loaded'); }
-        if (img.complete && img.naturalWidth > 0) { mark(); return; }
-        img.addEventListener('load', mark);
-        img.addEventListener('error', function () { window.setTimeout(mark, 80); });
-    });
+    const TINY_IMG = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    const pubFigures = document.querySelectorAll('.pub-figure img');
+    let revealSlot = 0;
+    let lastReveal = 0;
+
+    function reveal(img) {
+        const now = performance.now();
+        if (now - lastReveal > 400) revealSlot = 0; // queue drained — no artificial wait
+        lastReveal = now;
+        window.setTimeout(function () { img.classList.add('is-loaded'); },
+            Math.min(revealSlot++, 8) * 90);
+    }
+
+    function arm(img) {
+        if (img.complete && img.naturalWidth > 0) { reveal(img); return; }
+        img.addEventListener('load', function () { reveal(img); });
+        img.addEventListener('error', function () {
+            window.setTimeout(function () { img.classList.add('is-loaded'); }, 80);
+        });
+    }
+
+    if ('IntersectionObserver' in window) {
+        const figureObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                const img = entry.target;
+                figureObserver.unobserve(img);
+                const real = img.getAttribute('data-src');
+                if (real) img.src = real; // start this fetch now
+                arm(img);
+            });
+        }, { rootMargin: '320px 0px' });
+
+        pubFigures.forEach(function (img) {
+            if (img.complete && img.naturalWidth > 0) { arm(img); return; }
+            img.setAttribute('data-src', img.currentSrc || img.src);
+            img.src = TINY_IMG; // cancel the prefetch wave; fetch on approach instead
+            figureObserver.observe(img);
+        });
+    } else {
+        pubFigures.forEach(arm);
+    }
 
     /* --------------------------------------------------------
        Smooth scrolling for anchor links
