@@ -52,6 +52,20 @@
     }
 
     /* --------------------------------------------------------
+       Team member detail accordions
+    -------------------------------------------------------- */
+    document.querySelectorAll('.member-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var panel = document.getElementById(btn.getAttribute('aria-controls'));
+            if (!panel) return;
+            var open = panel.classList.toggle('open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            var label = btn.querySelector('span');
+            if (label) label.textContent = open ? '收起介绍' : '详细介绍';
+        });
+    });
+
+    /* --------------------------------------------------------
        Smooth scrolling for anchor links
     -------------------------------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -132,7 +146,7 @@
        Reveal-on-scroll animations
     -------------------------------------------------------- */
     const revealTargets = document.querySelectorAll(
-        '.team-member, .research-card, .achievement-category, .collab-item, .life-photo, .stat-card, .professor-detail'
+        '.team-member, .achievement-category, .collab-item, .life-photo, .stat-card'
     );
 
     if ('IntersectionObserver' in window && !prefersReducedMotion) {

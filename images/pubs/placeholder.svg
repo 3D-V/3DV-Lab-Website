@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" role="img" aria-label="论文框架图占位">
+  <defs>
+    <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <path d="M25 0 L0 0 0 25" fill="none" stroke="rgba(245,241,232,0.05)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9cd92"/>
+      <stop offset="1" stop-color="#a07f42"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="400" height="250" fill="#14151b"/>
+  <rect width="400" height="250" fill="url(#grid)"/>
+
+  <!-- wireframe cube (input) -->
+  <g fill="none" stroke="url(#goldLine)" stroke-width="1.4" opacity="0.9">
+    <rect x="58" y="96" width="52" height="52" transform="skewY(-8)"/>
+    <rect x="86" y="88" width="52" height="52" transform="skewY(-8)"/>
+    <line x1="58" y1="96" x2="86" y2="88"/>
+    <line x1="110" y1="90.7" x2="138" y2="82.7"/>
+    <line x1="58" y1="148" x2="86" y2="140"/>
+    <line x1="110" y1="142.7" x2="138" y2="134.7"/>
+  </g>
+  <circle cx="66" cy="104" r="2.6" fill="#e9cd92"/>
+  <circle cx="102" cy="98" r="2.6" fill="#c8a45d"/>
+  <circle cx="92" cy="128" r="2.6" fill="#c8a45d"/>
+
+  <!-- connectors -->
+  <g fill="none" stroke="#c8a45d" stroke-width="1.2" opacity="0.7">
+    <path d="M150 112 C 175 112, 180 74, 208 74"/>
+    <path d="M150 112 C 185 112, 185 112, 208 112"/>
+    <path d="M150 112 C 175 112, 180 150, 208 150"/>
+  </g>
+
+  <!-- stacked network layers -->
+  <g fill="none" stroke="url(#goldLine)" stroke-width="1.4">
+    <rect x="212" y="58" width="120" height="32" rx="7"/>
+    <rect x="212" y="96" width="120" height="32" rx="7"/>
+    <rect x="212" y="134" width="120" height="32" rx="7"/>
+  </g>
+  <g fill="rgba(200,164,93,0.16)">
+    <rect x="212" y="58" width="120" height="32" rx="7"/>
+    <rect x="212" y="96" width="120" height="32" rx="7"/>
+    <rect x="212" y="134" width="120" height="32" rx="7"/>
+  </g>
+  <g fill="#e9cd92">
+    <circle cx="234" cy="74" r="2.4"/><circle cx="252" cy="74" r="2.4"/><circle cx="270" cy="74" r="2.4"/><circle cx="288" cy="74" r="2.4"/>
+    <circle cx="240" cy="112" r="2.4"/><circle cx="262" cy="112" r="2.4"/><circle cx="284" cy="112" r="2.4"/>
+    <circle cx="234" cy="150" r="2.4"/><circle cx="256" cy="150" r="2.4"/><circle cx="278" cy="150" r="2.4"/><circle cx="296" cy="150" r="2.4"/>
+  </g>
+
+  <!-- output arrow -->
+  <g fill="none" stroke="#c8a45d" stroke-width="1.2" opacity="0.7">
+    <path d="M332 112 L 356 112"/>
+    <path d="M352 107 L 358 112 L 352 117"/>
+  </g>
+
+  <text x="200" y="216" text-anchor="middle" font-family="Georgia, 'Noto Serif SC', serif" font-size="12" letter-spacing="4" fill="rgba(233,205,146,0.55)">FRAMEWORK</text>
+  <text x="200" y="234" text-anchor="middle" font-family="Georgia, serif" font-size="9" letter-spacing="2" fill="rgba(245,241,232,0.3)"> awaiting figure </text>
+</svg>
