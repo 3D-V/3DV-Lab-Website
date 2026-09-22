@@ -163,6 +163,46 @@
     }
 
     /* --------------------------------------------------------
+       Figure lightbox — click a framework figure to zoom in;
+       the paper title link handles navigation instead.
+    -------------------------------------------------------- */
+    const lightbox = document.getElementById('figureLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+
+    function closeLightbox() {
+        if (!lightbox || !lightbox.classList.contains('open')) return;
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        lightboxImg.src = '';
+    }
+
+    if (lightbox && lightboxImg) {
+        document.querySelectorAll('[data-zoom]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const img = btn.querySelector('img');
+                if (!img) return;
+                const src = img.currentSrc || img.getAttribute('src') || '';
+                if (src.indexOf('placeholder') !== -1) return; // nothing real to zoom
+                lightboxImg.src = src;
+                lightboxImg.alt = img.alt || '';
+                lightboxCaption.textContent = img.alt || '';
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+            });
+        });
+
+        lightbox.querySelectorAll('[data-lb-close]').forEach(function (el) {
+            el.addEventListener('click', closeLightbox);
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    }
+
+    /* --------------------------------------------------------
        Smooth scrolling for anchor links
     -------------------------------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
