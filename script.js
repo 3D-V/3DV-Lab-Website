@@ -221,6 +221,99 @@
     });
 
     /* --------------------------------------------------------
+       Recent News pagination — five entries per page.
+       All entries remain in the HTML for no-JS access and indexing.
+    -------------------------------------------------------- */
+    const newsList = document.querySelector('.news-list');
+    const newsPagination = document.querySelector('.news-pagination');
+
+    if (newsList && newsPagination) {
+        const newsItems = Array.from(newsList.querySelectorAll('.news-item'));
+        const pageSize = 5;
+        const pageCount = Math.ceil(newsItems.length / pageSize);
+        const previousButton = newsPagination.querySelector('[data-news-prev]');
+        const nextButton = newsPagination.querySelector('[data-news-next]');
+        const pageNumbers = newsPagination.querySelector('.news-page-numbers');
+        const pageStatus = newsPagination.querySelector('.news-page-status');
+        let currentPage = 0;
+        let transitionTimer = null;
+
+        function updateNewsPage(page, shouldScroll) {
+            currentPage = Math.max(0, Math.min(page, pageCount - 1));
+            const first = currentPage * pageSize;
+            const last = first + pageSize;
+
+            newsItems.forEach(function (item, index) {
+                item.hidden = index < first || index >= last;
+            });
+
+            previousButton.disabled = currentPage === 0;
+            nextButton.disabled = currentPage === pageCount - 1;
+
+            pageNumbers.querySelectorAll('.news-page-number').forEach(function (button, index) {
+                const active = index === currentPage;
+                button.classList.toggle('is-active', active);
+                if (active) {
+                    button.setAttribute('aria-current', 'page');
+                } else {
+                    button.removeAttribute('aria-current');
+                }
+            });
+
+            pageStatus.textContent = '最新动态第 ' + (currentPage + 1) + ' 页，共 ' + pageCount + ' 页';
+
+            if (shouldScroll) {
+                newsList.scrollIntoView({
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        function goToNewsPage(page) {
+            if (page === currentPage || page < 0 || page >= pageCount) return;
+            window.clearTimeout(transitionTimer);
+
+            if (prefersReducedMotion) {
+                updateNewsPage(page, true);
+                return;
+            }
+
+            newsList.classList.add('is-changing');
+            transitionTimer = window.setTimeout(function () {
+                updateNewsPage(page, true);
+                window.requestAnimationFrame(function () {
+                    newsList.classList.remove('is-changing');
+                });
+            }, 180);
+        }
+
+        if (pageCount > 1) {
+            for (let page = 0; page < pageCount; page++) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'news-page-number';
+                button.textContent = String(page + 1);
+                button.setAttribute('aria-label', '第 ' + (page + 1) + ' 页');
+                button.addEventListener('click', function () {
+                    goToNewsPage(page);
+                });
+                pageNumbers.appendChild(button);
+            }
+
+            previousButton.addEventListener('click', function () {
+                goToNewsPage(currentPage - 1);
+            });
+            nextButton.addEventListener('click', function () {
+                goToNewsPage(currentPage + 1);
+            });
+
+            newsPagination.hidden = false;
+            updateNewsPage(0, false);
+        }
+    }
+
+    /* --------------------------------------------------------
        Unified scroll handler: navbar state, hero parallax,
        scroll-to-top visibility, active nav link.
     -------------------------------------------------------- */

@@ -937,6 +937,12 @@ body.modal-open {
     max-width: 980px;
     margin: 0 auto;
     border-top: 1px solid rgba(20, 21, 27, 0.1);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.news-list.is-changing {
+    opacity: 0;
+    transform: translateY(8px);
 }
 
 .news-item {
@@ -947,6 +953,10 @@ body.modal-open {
     padding: 1.65rem 1.15rem 1.7rem 0;
     border-bottom: 1px solid rgba(20, 21, 27, 0.1);
     transition: background 0.3s ease, padding-left 0.3s ease;
+}
+
+.news-item[hidden] {
+    display: none;
 }
 
 .news-item::before {
@@ -1006,6 +1016,78 @@ body.modal-open {
     color: var(--text-2);
     font-size: 0.92rem;
     line-height: 1.7;
+}
+
+.news-pagination {
+    max-width: 980px;
+    margin: 2.25rem auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+}
+
+.news-pagination[hidden] {
+    display: none;
+}
+
+.news-page-nav,
+.news-page-number {
+    min-width: 42px;
+    height: 42px;
+    border: 1px solid rgba(200, 164, 93, 0.38);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text-2);
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.news-page-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0 1.15rem;
+}
+
+.news-page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.news-page-nav:hover:not(:disabled),
+.news-page-number:hover,
+.news-page-number.is-active {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, var(--gold-2), var(--gold));
+    color: #241a09;
+    transform: translateY(-2px);
+}
+
+.news-page-number.is-active {
+    box-shadow: 0 5px 16px rgba(160, 127, 66, 0.2);
+}
+
+.news-page-nav:disabled {
+    cursor: not-allowed;
+    opacity: 0.38;
+}
+
+.news-page-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .detail-modal {
@@ -2170,6 +2252,24 @@ body.js .pub-figure img:not(.is-loaded) {
     .news-content h3 {
         font-size: 1.04rem;
         line-height: 1.55;
+    }
+
+    .news-pagination {
+        gap: 0.45rem;
+        margin-top: 1.8rem;
+    }
+
+    .news-page-nav {
+        width: 42px;
+        padding: 0;
+    }
+
+    .news-page-nav span {
+        display: none;
+    }
+
+    .news-page-numbers {
+        gap: 0.38rem;
     }
 }
 
