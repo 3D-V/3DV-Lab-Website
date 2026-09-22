@@ -2045,6 +2045,10 @@ body.js .pub-figure img:not(.is-loaded) {
     margin-top: 5.2rem;
 }
 
+.life-photo--wide {
+    grid-column: span 2;
+}
+
 .life-photo:hover {
     transform: translateY(-8px);
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
@@ -2377,6 +2381,10 @@ body.js .pub-figure img:not(.is-loaded) {
         grid-column: 1 / -1;
     }
 
+    .life-photo--wide {
+        grid-column: 1 / -1;
+    }
+
     .life-photo:nth-child(2),
     .life-photo:nth-child(3) {
         margin-top: 0;
@@ -2494,6 +2502,10 @@ body.js .pub-figure img:not(.is-loaded) {
 
     .life-gallery {
         grid-template-columns: 1fr;
+    }
+
+    .life-photo--wide {
+        grid-column: auto;
     }
 
     .pub-item {
