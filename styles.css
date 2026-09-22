@@ -2016,6 +2016,14 @@ body.js .pub-figure img:not(.is-loaded) {
     transform: scale(1.06);
 }
 
+.life-photo--uncropped img,
+.life-photo--uncropped:hover img {
+    aspect-ratio: auto;
+    height: auto;
+    object-fit: contain;
+    transform: none;
+}
+
 .life-photo::after {
     content: "";
     position: absolute;
