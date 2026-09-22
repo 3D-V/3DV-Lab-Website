@@ -453,7 +453,7 @@
        Reveal-on-scroll animations
     -------------------------------------------------------- */
     const revealTargets = document.querySelectorAll(
-        '.team-member, .achievement-category, .collab-item, .life-photo, .stat-card'
+        '.team-member, .achievement-category, .collab-item, .life-photo'
     );
 
     if ('IntersectionObserver' in window && !prefersReducedMotion) {

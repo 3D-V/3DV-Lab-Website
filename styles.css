@@ -678,7 +678,6 @@ section {
 
 /* Light-section rhythm */
 .about { background: var(--paper); }
-.team { background: var(--card); }
 .news { background: var(--paper); }
 .publications { background: var(--paper); }
 .achievements { background: var(--card); }
@@ -991,10 +990,8 @@ section {
    About
    ============================================================ */
 .about-content {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 3.5rem;
-    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .about-text h3 {
@@ -1010,70 +1007,25 @@ section {
     line-height: 1.9;
 }
 
-.research-highlights {
-    margin-top: 2rem;
-    padding: 1.5rem 1.7rem;
-    background: var(--card);
-    border: 1px solid rgba(200, 164, 93, 0.28);
-    border-radius: var(--radius);
+.about-team {
+    margin-top: 4.5rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid rgba(160, 127, 66, 0.25);
 }
 
-.research-highlights h4 {
-    font-size: 1.15rem;
-    margin-bottom: 1rem;
-    color: var(--text);
+.about-team-heading {
+    margin-bottom: 2rem;
 }
 
-.research-highlights ul {
-    list-style: none;
+.about-team-heading .kicker {
+    display: block;
+    margin-bottom: 0.65rem;
 }
 
-.research-highlights li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.7rem;
-    color: var(--text-2);
-}
-
-.research-highlights i {
-    color: var(--gold-deep);
-    margin-right: 0.8rem;
-    font-size: 0.85rem;
-}
-
-.lab-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-}
-
-.stat-card {
-    background: var(--card);
-    padding: 1.6rem;
-    border-radius: var(--radius);
-    text-align: center;
-    border: 1px solid rgba(20, 21, 27, 0.06);
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: rgba(200, 164, 93, 0.4);
-}
-
-.stat-card h3 {
+.about-team-heading h3 {
     font-family: var(--serif);
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: var(--gold-deep);
-    margin-bottom: 0.4rem;
-}
-
-.stat-card p {
-    color: var(--muted);
-    font-size: 0.92rem;
+    font-size: clamp(1.9rem, 3vw, 2.5rem);
+    color: var(--text);
 }
 
 /* ============================================================
@@ -2045,10 +1997,6 @@ body.js .pub-figure img:not(.is-loaded) {
     margin-top: 5.2rem;
 }
 
-.life-photo--wide {
-    grid-column: span 2;
-}
-
 .life-photo:hover {
     transform: translateY(-8px);
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
@@ -2220,19 +2168,16 @@ body.js .pub-figure img:not(.is-loaded) {
     font-size: 0.94rem;
 }
 
-.research-interests,
 .collaboration-types {
     margin-bottom: 1.8rem;
 }
 
-.research-interests h4,
 .collaboration-types h4 {
     font-size: 1.1rem;
     margin-bottom: 0.9rem;
     color: var(--text);
 }
 
-.research-interests ul,
 .collaboration-types ul {
     list-style: none;
     display: grid;
@@ -2240,7 +2185,6 @@ body.js .pub-figure img:not(.is-loaded) {
     gap: 0.5rem;
 }
 
-.research-interests li,
 .collaboration-types li {
     color: var(--text-2);
     font-size: 0.92rem;
@@ -2252,7 +2196,6 @@ body.js .pub-figure img:not(.is-loaded) {
     transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-.research-interests li:hover,
 .collaboration-types li:hover {
     border-color: var(--gold);
     color: var(--text);
@@ -2381,18 +2324,11 @@ body.js .pub-figure img:not(.is-loaded) {
         grid-column: 1 / -1;
     }
 
-    .life-photo--wide {
-        grid-column: 1 / -1;
-    }
-
     .life-photo:nth-child(2),
     .life-photo:nth-child(3) {
         margin-top: 0;
     }
 
-    .about-content {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (max-width: 900px) {
@@ -2502,10 +2438,6 @@ body.js .pub-figure img:not(.is-loaded) {
 
     .life-gallery {
         grid-template-columns: 1fr;
-    }
-
-    .life-photo--wide {
-        grid-column: auto;
     }
 
     .pub-item {
