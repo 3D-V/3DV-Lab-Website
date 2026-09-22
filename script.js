@@ -52,6 +52,54 @@
     }
 
     /* --------------------------------------------------------
+       Warm the publications page after the current page is ready.
+       This keeps navigation responsive without competing with the
+       current page's critical images.
+    -------------------------------------------------------- */
+    const publicationLinks = document.querySelectorAll('a[href="publications.html"]');
+    if (publicationLinks.length && !document.querySelector('.publications')) {
+        let publicationsWarmed = false;
+
+        function warmPublications() {
+            if (publicationsWarmed) return;
+            publicationsWarmed = true;
+
+            const pagePrefetch = document.createElement('link');
+            pagePrefetch.rel = 'prefetch';
+            pagePrefetch.href = 'publications.html';
+            document.head.appendChild(pagePrefetch);
+
+            [
+                'images/pubs/j1.jpg',
+                'images/pubs/placeholder.svg',
+                'images/pubs/c5.jpg',
+                'images/pubs/c6.jpg'
+            ].forEach(function (src) {
+                const image = new Image();
+                image.decoding = 'async';
+                image.src = src;
+            });
+        }
+
+        publicationLinks.forEach(function (link) {
+            link.addEventListener('pointerenter', warmPublications, { once: true });
+            link.addEventListener('focus', warmPublications, { once: true });
+            link.addEventListener('touchstart', warmPublications, { once: true, passive: true });
+        });
+
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (!connection || (!connection.saveData && connection.effectiveType !== '2g')) {
+            window.addEventListener('load', function () {
+                if ('requestIdleCallback' in window) {
+                    window.requestIdleCallback(warmPublications, { timeout: 2500 });
+                } else {
+                    window.setTimeout(warmPublications, 1200);
+                }
+            }, { once: true });
+        }
+    }
+
+    /* --------------------------------------------------------
        Team member details — dialog overlay
        The member's .detail-content node is adopted into the modal
        while open, then returned to its card on close.
@@ -115,54 +163,52 @@
     if (photoDialog) {
         const enlargedPhoto = photoDialog.querySelector('img');
         const caption = photoDialog.querySelector('.members-photo-caption');
-        const closePhoto = photoDialog.querySelector('.members-photo-close');
-        let lastPhoto = null;
+        const closePhotoButton = photoDialog.querySelector('.members-photo-close');
+        let activePhotoLink = null;
 
-        function openPhoto(photo) {
-            lastPhoto = photo;
-            enlargedPhoto.src = photo.src;
-            enlargedPhoto.alt = photo.alt;
-            caption.textContent = photo.closest('.members-card, .members-advisor').querySelector('h3, h4').textContent;
-            photoDialog.showModal();
-            closePhoto.focus();
+        function closePhoto() {
+            if (!photoDialog.classList.contains('open')) return;
+            photoDialog.classList.remove('open');
+            photoDialog.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            enlargedPhoto.removeAttribute('src');
+            if (activePhotoLink) activePhotoLink.focus();
+            activePhotoLink = null;
         }
 
-        document.querySelectorAll('.members-card > img, .members-advisor > img').forEach(function (photo) {
-            photo.tabIndex = 0;
-            photo.setAttribute('role', 'button');
-            photo.setAttribute('aria-label', '放大查看' + photo.alt);
-            photo.addEventListener('click', function () { openPhoto(photo); });
-            photo.addEventListener('keydown', function (event) {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    openPhoto(photo);
-                }
+        document.querySelectorAll('[data-member-photo]').forEach(function (link) {
+            link.setAttribute('aria-label', '放大查看' + link.querySelector('img').alt);
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const photo = link.querySelector('img');
+                const card = link.closest('.members-card, .members-advisor');
+                const name = card && card.querySelector('h3, h4');
+                activePhotoLink = link;
+                enlargedPhoto.src = link.href;
+                enlargedPhoto.alt = photo.alt;
+                caption.textContent = name ? name.textContent : photo.alt;
+                photoDialog.classList.add('open');
+                photoDialog.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+                closePhotoButton.focus();
             });
         });
 
-        closePhoto.addEventListener('click', function () { photoDialog.close(); });
+        closePhotoButton.addEventListener('click', closePhoto);
         photoDialog.addEventListener('click', function (event) {
-            if (event.target === photoDialog) photoDialog.close();
+            if (event.target === photoDialog) closePhoto();
         });
-        photoDialog.addEventListener('close', function () {
-            enlargedPhoto.removeAttribute('src');
-            if (lastPhoto) lastPhoto.focus();
-            lastPhoto = null;
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') closePhoto();
         });
     }
 
     /* --------------------------------------------------------
-       Publication figures — async, scroll-paced loading.
-       Native lazy-loading prefetches a large radius, so a whole
-       wave of figures fetches and pops in at once. Take over:
-       park pending figures on a transparent pixel (aborting the
-       wave), fetch each as it approaches the viewport, and reveal
-       finished figures with a slight stagger so even a finishing
-       wave fades in one after another.
+       Publication figures — load the first screen immediately and
+       leave the remaining figures to native browser lazy-loading.
     -------------------------------------------------------- */
     document.body.classList.add('js');
 
-    const TINY_IMG = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     const pubFigures = document.querySelectorAll('.pub-figure img');
     let revealSlot = 0;
     let lastReveal = 0;
@@ -183,27 +229,13 @@
         });
     }
 
-    if ('IntersectionObserver' in window) {
-        const figureObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (!entry.isIntersecting) return;
-                const img = entry.target;
-                figureObserver.unobserve(img);
-                const real = img.getAttribute('data-src');
-                if (real) img.src = real; // start this fetch now
-                arm(img);
-            });
-        }, { rootMargin: '320px 0px' });
-
-        pubFigures.forEach(function (img) {
-            if (img.complete && img.naturalWidth > 0) { arm(img); return; }
-            img.setAttribute('data-src', img.currentSrc || img.src);
-            img.src = TINY_IMG; // cancel the prefetch wave; fetch on approach instead
-            figureObserver.observe(img);
-        });
-    } else {
-        pubFigures.forEach(arm);
-    }
+    pubFigures.forEach(function (img, index) {
+        if (index < 4) {
+            img.loading = 'eager';
+            if (index === 0) img.fetchPriority = 'high';
+        }
+        arm(img);
+    });
 
     /* --------------------------------------------------------
        Figure lightbox — click a framework figure to zoom in;
