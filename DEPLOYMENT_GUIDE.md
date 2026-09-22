@@ -1,11 +1,11 @@
 # 🚀 HDU-3DV Lab 网站部署指南
 
-本指南将帮助您将网站部署到 `https://github.com/3D-V` 组织。
+本指南将帮助您将网站部署到 `https://github.com/hdu-3dv` 组织。
 
 ## 📋 前置要求
 
 1. **GitHub账户**: 确保您有GitHub账户
-2. **组织权限**: 确保您是 `3D-V` 组织的成员，并有创建仓库的权限
+2. **组织权限**: 确保您是 `hdu-3dv` 组织的成员，并有创建仓库的权限
 3. **Git工具**: 安装Git命令行工具或GitHub Desktop
 
 ## 🎯 部署步骤
@@ -13,9 +13,9 @@
 ### 方法一：使用GitHub网页界面（推荐）
 
 #### 步骤1: 创建仓库
-1. 访问 [https://github.com/3D-V](https://github.com/3D-V)
+1. 访问 [https://github.com/hdu-3dv](https://github.com/hdu-3dv)
 2. 点击 "New repository" 按钮
-3. 仓库名称设置为: `3DV-Lab-Website` 或 `lab-website`
+3. 仓库名称设置为: `hdu-3dv.github.io` 或 `lab-website`
 4. 描述: `HDU-3DV Lab Official Website - 杭州电子科技大学三维视觉实验室官方网站`
 5. 设置为 **Public** 仓库
 6. 勾选 "Add a README file"
@@ -44,15 +44,15 @@
 
 #### 步骤4: 访问网站
 - 等待2-5分钟，网站将在以下地址可用：
-- `https://3d-v.github.io/3DV-Lab-Website/`
+- `https://hdu-3dv.github.io/`
 
 ### 方法二：使用Git命令行
 
 #### 步骤1: 克隆仓库
 ```bash
-# 在3D-V组织下创建仓库后，克隆到本地
-git clone https://github.com/3D-V/3DV-Lab-Website.git
-cd 3DV-Lab-Website
+# 在 hdu-3dv 组织下创建仓库后，克隆到本地
+git clone https://github.com/hdu-3dv/hdu-3dv.github.io.git
+cd hdu-3dv.github.io
 ```
 
 #### 步骤2: 复制文件
@@ -81,7 +81,7 @@ git push origin main
 #### 步骤1: 创建仓库
 1. 打开GitHub Desktop
 2. 点击 "File" → "New repository"
-3. 名称: `3DV-Lab-Website`
+3. 名称: `hdu-3dv.github.io`
 4. 描述: `HDU-3DV Lab Official Website`
 5. 选择本地路径
 6. 勾选 "Initialize this repository with a README"
@@ -89,7 +89,7 @@ git push origin main
 
 #### 步骤2: 发布到GitHub
 1. 点击 "Publish repository"
-2. 确保选择 "3D-V" 组织
+2. 确保选择 "hdu-3dv" 组织
 3. 取消勾选 "Keep this code private"
 4. 点击 "Publish repository"
 
@@ -109,15 +109,15 @@ git push origin main
 ```yaml
 title: "HDU-3DV Lab | 杭州电子科技大学三维视觉实验室"
 description: "杭州电子科技大学三维视觉实验室官方网站"
-url: "https://3d-v.github.io"
-baseurl: "/3DV-Lab-Website"
+url: "https://hdu-3dv.github.io"
+baseurl: ""
 ```
 
 ### 自定义域名（可选）
 如果您有自定义域名：
 1. 在仓库根目录创建 `CNAME` 文件
 2. 文件内容为您的域名，如: `lab.3dv.org`
-3. 在域名DNS设置中添加CNAME记录指向 `3d-v.github.io`
+3. 在域名DNS设置中添加CNAME记录指向 `hdu-3dv.github.io`
 
 ## 🔧 维护和更新
 
@@ -134,8 +134,8 @@ baseurl: "/3DV-Lab-Website"
 ## 🌐 访问地址
 
 部署成功后，网站将在以下地址可用：
-- **主要地址**: `https://3d-v.github.io/3DV-Lab-Website/`
-- **备用地址**: `https://3d-v.github.io/lab-website/` (如果仓库名为lab-website)
+- **主要地址**: `https://hdu-3dv.github.io/`
+- **备用地址**: `https://hdu-3dv.github.io/lab-website/` (如果仓库名为lab-website)
 
 ## 🔍 故障排除
 
@@ -156,7 +156,7 @@ baseurl: "/3DV-Lab-Website"
 
 ### 联系支持
 如遇到技术问题，请联系：
-- 实验室邮箱: 3dvlab@hdu.edu.cn
+- 实验室邮箱: qinfeiwei@hdu.edu.cn
 - GitHub Issues: 在仓库中创建Issue
 
 ## 📊 网站统计

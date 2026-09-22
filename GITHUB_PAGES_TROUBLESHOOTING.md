@@ -1,14 +1,14 @@
 # 🔧 GitHub Pages 故障排除指南
 
 ## 🚨 当前问题
-访问 `https://3d-v.github.io/3DV-Lab-Website/` 时显示 "There isn't a GitHub Pages site here."
+访问 `https://hdu-3dv.github.io/` 时显示 "There isn't a GitHub Pages site here."
 
 ## 🔍 可能的原因和解决方案
 
 ### 1. GitHub Pages 设置问题
 
 #### 检查步骤：
-1. 访问 [仓库设置页面](https://github.com/3D-V/3DV-Lab-Website/settings/pages)
+1. 访问 [仓库设置页面](https://github.com/hdu-3dv/hdu-3dv.github.io/settings/pages)
 2. 确认以下设置：
    - **Source**: Deploy from a branch
    - **Branch**: main
@@ -22,7 +22,7 @@
 ### 2. 权限问题
 
 #### 检查组织权限：
-1. 确认您是 3D-V 组织的成员
+1. 确认您是 hdu-3dv 组织的成员
 2. 确认有 Pages 部署权限
 3. 检查仓库是否为 Public（GitHub Pages 免费版需要公开仓库）
 
@@ -33,7 +33,7 @@
 ### 3. GitHub Actions 工作流问题
 
 #### 检查 Actions：
-1. 访问 [Actions 页面](https://github.com/3D-V/3DV-Lab-Website/actions)
+1. 访问 [Actions 页面](https://github.com/hdu-3dv/hdu-3dv.github.io/actions)
 2. 查看是否有失败的工作流
 3. 检查部署状态
 
@@ -52,7 +52,7 @@
 
 #### 当前文件结构：
 ```
-3DV-Lab-Website/
+hdu-3dv.github.io/
 ├── .github/
 │   └── workflows/
 │       └── pages.yml
@@ -68,8 +68,8 @@
 ### 5. 域名和URL问题
 
 #### 正确的访问地址：
-- **主地址**: `https://3d-v.github.io/3DV-Lab-Website/`
-- **备用检查**: `https://github.com/3D-V/3DV-Lab-Website`
+- **主地址**: `https://hdu-3dv.github.io/`
+- **备用检查**: `https://github.com/hdu-3dv/hdu-3dv.github.io`
 
 #### 常见错误：
 - 使用了错误的组织名称
@@ -134,7 +134,7 @@
 1. **检查 GitHub 文档**: [GitHub Pages 文档](https://docs.github.com/en/pages)
 2. **联系组织管理员**: 确认权限和设置
 3. **GitHub 支持**: 如果是 GitHub 服务问题
-4. **实验室技术支持**: 3dvlab@hdu.edu.cn
+4. **实验室技术支持**: qinfeiwei@hdu.edu.cn
 
 ## 🔄 状态检查清单
 
@@ -148,7 +148,7 @@
 
 ## 📈 预期结果
 
-成功部署后，访问 `https://3d-v.github.io/3DV-Lab-Website/` 应该显示：
+成功部署后，访问 `https://hdu-3dv.github.io/` 应该显示：
 - HDU-3DV Lab 主页
 - 秦飞巍教授的照片和详细信息
 - 完整的实验室介绍

@@ -2,7 +2,7 @@
 
 欢迎访问杭州电子科技大学三维视觉实验室(HDU-3DV Lab)的官方网站！
 
-🌐 **网站地址**: [https://3d-v.github.io/3DV-Lab-Website](https://3d-v.github.io/3DV-Lab-Website)
+🌐 **网站地址**: [https://hdu-3dv.github.io/](https://hdu-3dv.github.io/)
 
 ## 🏛️ 实验室简介
 
@@ -53,7 +53,7 @@ HDU-3DV实验室隶属于杭州电子科技大学计算机学院，是一个专�
 ## 📞 联系我们
 
 - **地址**: 浙江省杭州市钱塘区白杨街道2号大街1158号，杭州电子科技大学计算机学院
-- **邮箱**: 3dvlab@hdu.edu.cn
+- **邮箱**: qinfeiwei@hdu.edu.cn
 - **网站**: [杭州电子科技大学](https://www.hdu.edu.cn) | [计算机学院](https://computer.hdu.edu.cn/main.htm)
 
 ## 🔗 相关链接

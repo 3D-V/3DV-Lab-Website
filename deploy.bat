@@ -19,7 +19,7 @@ echo.
 REM 检查是否在正确的目录
 if not exist "index.html" (
     echo Error: index.html not found in current directory
-    echo Please run this script from the 3DV-Lab-Website folder
+    echo Please run this script from the hdu-3dv.github.io folder
     pause
     exit /b 1
 )
@@ -54,7 +54,7 @@ if %errorlevel% neq 0 (
     echo.
     echo Setting up remote repository...
     echo Please enter the repository URL when prompted.
-    echo Example: https://github.com/3D-V/3DV-Lab-Website.git
+    echo Example: https://github.com/hdu-3dv/hdu-3dv.github.io.git
     echo.
     set /p repo_url="Enter repository URL: "
     git remote add origin !repo_url!
@@ -73,7 +73,7 @@ if %errorlevel% equ 0 (
     echo ========================================
     echo.
     echo Your website will be available at:
-    echo https://3d-v.github.io/3DV-Lab-Website/
+    echo https://hdu-3dv.github.io/
     echo.
     echo Note: It may take 5-10 minutes for changes to appear.
     echo.

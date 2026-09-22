@@ -127,7 +127,7 @@
 - **推送状态**: ✅ 已成功推送到GitHub
 
 ### 🌐 网站访问
-- **主地址**: https://3d-v.github.io/3DV-Lab-Website/
+- **主地址**: https://hdu-3dv.github.io/
 - **更新状态**: ✅ 已自动部署
 - **照片显示**: ✅ 正常显示
 - **响应式**: ✅ 完美适配各设备
@@ -160,5 +160,5 @@
 ---
 
 **更新时间**: 2024年12月
-**网站地址**: https://3d-v.github.io/3DV-Lab-Website/
+**网站地址**: https://hdu-3dv.github.io/
 **维护团队**: HDU-3DV Lab

@@ -139,7 +139,7 @@
 - **文件状态**: 所有照片和代码已同步
 
 ### 🌐 网站访问
-- **主地址**: https://3d-v.github.io/3DV-Lab-Website/
+- **主地址**: https://hdu-3dv.github.io/
 - **更新状态**: ✅ 已自动部署
 - **照片显示**: ✅ 所有照片正常显示
 - **重叠问题**: ✅ 已修复
@@ -174,5 +174,5 @@
 ---
 
 **更新时间**: 2024年12月  
-**网站地址**: https://3d-v.github.io/3DV-Lab-Website/  
+**网站地址**: https://hdu-3dv.github.io/
 **维护团队**: HDU-3DV Lab

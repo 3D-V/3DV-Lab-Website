@@ -61,7 +61,7 @@
 ### 方法二：使用GitHub上传
 
 1. **在GitHub仓库中创建images文件夹**
-   - 进入 `https://github.com/3D-V/3DV-Lab-Website`
+   - 进入 `https://github.com/hdu-3dv/hdu-3dv.github.io`
    - 点击 "Create new file"
    - 输入 `images/README.md` 创建文件夹
 
@@ -195,14 +195,14 @@
    ```
 
 2. **验证网站**
-   - 访问 `https://3d-v.github.io/3DV-Lab-Website/`
+   - 访问 `https://hdu-3dv.github.io/`
    - 检查照片是否正确显示
    - 测试响应式效果
 
 ## 📞 技术支持
 
 如需帮助，请联系：
-- 实验室邮箱: 3dvlab@hdu.edu.cn
+- 实验室邮箱: qinfeiwei@hdu.edu.cn
 - GitHub Issues: 在仓库中创建Issue
 
 ---
