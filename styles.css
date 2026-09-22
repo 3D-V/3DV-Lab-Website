@@ -1119,20 +1119,6 @@ section {
     position: relative;
 }
 
-.featured-member::before {
-    content: "实验室负责人";
-    position: absolute;
-    top: -12px;
-    left: 22px;
-    background: linear-gradient(135deg, var(--gold-2), var(--gold));
-    color: #241a09;
-    padding: 4px 14px;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    box-shadow: 0 4px 14px rgba(200, 164, 93, 0.4);
-}
-
 .professor-photo {
     width: 118px;
     height: 118px;
@@ -1170,22 +1156,6 @@ section {
     font-size: 0.93rem;
     line-height: 1.75;
     margin-bottom: 1.2rem;
-}
-
-.member-achievements {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.achievement {
-    background: var(--gold-tint);
-    color: #85662f;
-    padding: 0.28rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    font-weight: 500;
-    border: 1px solid rgba(200, 164, 93, 0.25);
 }
 
 /* ============================================================
