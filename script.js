@@ -109,6 +109,49 @@
     }
 
     /* --------------------------------------------------------
+       Member portraits — click or press Enter/Space to enlarge.
+    -------------------------------------------------------- */
+    const photoDialog = document.querySelector('.members-photo-dialog');
+    if (photoDialog) {
+        const enlargedPhoto = photoDialog.querySelector('img');
+        const caption = photoDialog.querySelector('.members-photo-caption');
+        const closePhoto = photoDialog.querySelector('.members-photo-close');
+        let lastPhoto = null;
+
+        function openPhoto(photo) {
+            lastPhoto = photo;
+            enlargedPhoto.src = photo.src;
+            enlargedPhoto.alt = photo.alt;
+            caption.textContent = photo.closest('.members-card, .members-advisor').querySelector('h3, h4').textContent;
+            photoDialog.showModal();
+            closePhoto.focus();
+        }
+
+        document.querySelectorAll('.members-card > img, .members-advisor > img').forEach(function (photo) {
+            photo.tabIndex = 0;
+            photo.setAttribute('role', 'button');
+            photo.setAttribute('aria-label', '放大查看' + photo.alt);
+            photo.addEventListener('click', function () { openPhoto(photo); });
+            photo.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openPhoto(photo);
+                }
+            });
+        });
+
+        closePhoto.addEventListener('click', function () { photoDialog.close(); });
+        photoDialog.addEventListener('click', function (event) {
+            if (event.target === photoDialog) photoDialog.close();
+        });
+        photoDialog.addEventListener('close', function () {
+            enlargedPhoto.removeAttribute('src');
+            if (lastPhoto) lastPhoto.focus();
+            lastPhoto = null;
+        });
+    }
+
+    /* --------------------------------------------------------
        Publication figures — async, scroll-paced loading.
        Native lazy-loading prefetches a large radius, so a whole
        wave of figures fetches and pops in at once. Take over:
