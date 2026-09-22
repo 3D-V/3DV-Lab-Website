@@ -1159,23 +1159,75 @@ body.modal-open {
 
 .pub-figure {
     display: block;
+    position: relative;
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid rgba(200, 164, 93, 0.25);
-    /* shimmer skeleton sweeps while the figure downloads */
-    background: linear-gradient(100deg, #e9e6df 42%, #f4f1ea 50%, #e9e6df 58%);
-    background-size: 220% 100%;
+    /* paper base + gold glint sweeping while the figure downloads */
+    background:
+        radial-gradient(120% 90% at 50% 0%, rgba(200, 164, 93, 0.09), transparent 55%),
+        linear-gradient(100deg, #e9e6df 42%, #f4f1ea 50%, #e9e6df 58%);
+    background-size: 100% 100%, 220% 100%;
     animation: pub-shimmer 1.5s ease-in-out infinite;
 }
 
 @keyframes pub-shimmer {
-    from { background-position: 130% 0; }
-    to { background-position: -30% 0; }
+    from { background-position: 0 0, 130% 0; }
+    to { background-position: 0 0, -30% 0; }
+}
+
+/* floating wireframe-cube emblem (echoes the intro loader's 3D motif) */
+.pub-figure::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    width: 46px;
+    height: 46px;
+    transform: translate(-50%, -50%);
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 L87 27.5 L50 49 L13 27.5 Z' fill='%23c8a45d' opacity='.08'/%3E%3Cg fill='none' stroke='%23c8a45d' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M50 6 L87 27.5 L87 72.5 L50 94 L13 72.5 L13 27.5 Z'/%3E%3Cpath d='M13 27.5 L50 49 L87 27.5 M50 49 L50 94'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+    opacity: 0.85;
+    animation: pub-cube-float 2.6s ease-in-out infinite;
+    transition: opacity 0.4s ease;
+}
+
+.pub-figure::after {
+    content: "正在解析框架图";
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    transform: translate(-50%, 34px);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    padding-left: 0.32em; /* optically center tracked text */
+    color: #a3854e;
+    white-space: nowrap;
+    transition: opacity 0.4s ease;
+}
+
+@keyframes pub-cube-float {
+    0%, 100% { transform: translate(-50%, -50%); }
+    50% { transform: translate(-50%, calc(-50% - 6px)); }
+}
+
+/* once the figure lands it paints above the emblem; fade the decor away */
+.pub-figure img.is-loaded {
+    position: relative;
+}
+
+.pub-figure:has(img.is-loaded)::before,
+.pub-figure:has(img.is-loaded)::after {
+    opacity: 0;
+}
+
+.pub-figure:has(img.is-loaded) {
+    animation: none;
 }
 
 /* hidden until decoded only when JS is active (no-JS keeps figures visible) */
-body.js .pub-figure img {
+body.js .pub-figure img:not(.is-loaded) {
     opacity: 0;
 }
 
