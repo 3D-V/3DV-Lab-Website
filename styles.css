@@ -1620,18 +1620,6 @@ body.modal-open {
     animation: pub-scan-travel 2.4s ease-in-out infinite;
 }
 
-.pub-scan-art::after {
-    content: "框架图载入中";
-    position: absolute;
-    bottom: 16%;
-    font-size: 0.7rem;
-    color: #d7eadc;
-}
-
-.pub-figure.is-placeholder .pub-scan-art::after {
-    content: "框架图待补充";
-}
-
 @keyframes pub-scan-glow {
     0%, 100% { opacity: 0.5; box-shadow: 0 0 8px rgba(114, 198, 190, 0.12); }
     50% { opacity: 1; box-shadow: 0 0 18px rgba(114, 198, 190, 0.35); }
@@ -1655,6 +1643,10 @@ body.modal-open {
 /* hidden until decoded only when JS is active (no-JS keeps figures visible) */
 body.js .pub-figure img:not(.is-loaded) {
     opacity: 0;
+}
+
+.pub-figure img[src*="placeholder.svg"] {
+    visibility: hidden;
 }
 
 body.js .pub-figure.is-placeholder img {

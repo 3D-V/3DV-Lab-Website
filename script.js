@@ -217,7 +217,7 @@
         const button = img.closest('.pub-figure');
         if (img.getAttribute('src').includes('placeholder.svg')) {
             button.classList.add('is-placeholder');
-            button.setAttribute('aria-label', '框架图待补充');
+            button.setAttribute('aria-label', '论文图形动画');
             button.disabled = true;
             img.classList.add('is-loaded');
             return;
