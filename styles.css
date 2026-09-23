@@ -1555,12 +1555,7 @@ body.modal-open {
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid rgba(200, 164, 93, 0.25);
-    /* paper base + gold glint sweeping while the figure downloads */
-    background:
-        radial-gradient(120% 90% at 50% 0%, rgba(200, 164, 93, 0.09), transparent 55%),
-        linear-gradient(100deg, #e9e6df 42%, #f4f1ea 50%, #e9e6df 58%);
-    background-size: 100% 100%, 220% 100%;
-    animation: pub-shimmer 1.5s ease-in-out infinite;
+    background: #17202a;
 }
 
 .pub-figure:focus-visible {
@@ -1568,63 +1563,103 @@ body.modal-open {
     outline-offset: 2px;
 }
 
-@keyframes pub-shimmer {
-    from { background-position: 0 0, 130% 0; }
-    to { background-position: 0 0, -30% 0; }
+.pub-figure.is-placeholder {
+    cursor: default;
+    opacity: 1;
 }
 
-/* floating wireframe-cube emblem (echoes the intro loader's 3D motif) */
-.pub-figure::before {
+.pub-scan-art {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8%;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, transparent 16%, rgba(114, 198, 190, 0.45) 16%, rgba(114, 198, 190, 0.45) 84%, transparent 84%) center 50% / 100% 1px no-repeat,
+        repeating-linear-gradient(0deg, transparent 0 19px, rgba(232, 243, 236, 0.045) 20px),
+        repeating-linear-gradient(90deg, transparent 0 19px, rgba(232, 243, 236, 0.045) 20px);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.pub-scan-node {
+    position: relative;
+    width: 19%;
+    height: 30%;
+    border: 1px solid rgba(114, 198, 190, 0.7);
+    border-radius: 4px;
+    background:
+        linear-gradient(90deg, #86d5c0 0 64%, transparent 64%) 50% 38% / 62% 2px no-repeat,
+        linear-gradient(90deg, #c8a45d 0 80%, transparent 80%) 50% 58% / 62% 2px no-repeat,
+        rgba(21, 42, 50, 0.95);
+    box-shadow: 0 0 15px rgba(114, 198, 190, 0.18);
+    animation: pub-scan-glow 2.4s ease-in-out infinite;
+}
+
+.pub-scan-node:nth-child(2) {
+    border-color: rgba(200, 164, 93, 0.75);
+    animation-delay: 0.45s;
+}
+
+.pub-scan-node:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+.pub-scan-art::before {
     content: "";
     position: absolute;
-    left: 50%;
-    top: 44%;
-    width: 46px;
-    height: 46px;
-    transform: translate(-50%, -50%);
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 6 L87 27.5 L50 49 L13 27.5 Z' fill='%23c8a45d' opacity='.08'/%3E%3Cg fill='none' stroke='%23c8a45d' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M50 6 L87 27.5 L87 72.5 L50 94 L13 72.5 L13 27.5 Z'/%3E%3Cpath d='M13 27.5 L50 49 L87 27.5 M50 49 L50 94'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
-    opacity: 0.85;
-    animation: pub-cube-float 2.6s ease-in-out infinite;
-    transition: opacity 0.4s ease;
+    top: calc(50% - 4px);
+    left: 16%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d7eadc;
+    box-shadow: 0 0 12px #86d5c0;
+    animation: pub-scan-travel 2.4s ease-in-out infinite;
 }
 
-.pub-figure::after {
-    content: "正在解析框架图";
+.pub-scan-art::after {
+    content: "框架图载入中";
     position: absolute;
-    left: 50%;
-    top: 44%;
-    transform: translate(-50%, 34px);
-    font-size: 0.64rem;
-    font-weight: 600;
-    letter-spacing: 0.32em;
-    padding-left: 0.32em; /* optically center tracked text */
-    color: #a3854e;
-    white-space: nowrap;
-    transition: opacity 0.4s ease;
+    bottom: 16%;
+    font-size: 0.7rem;
+    color: #d7eadc;
 }
 
-@keyframes pub-cube-float {
-    0%, 100% { transform: translate(-50%, -50%); }
-    50% { transform: translate(-50%, calc(-50% - 6px)); }
+.pub-figure.is-placeholder .pub-scan-art::after {
+    content: "框架图待补充";
 }
 
-/* once the figure lands it paints above the emblem; fade the decor away */
+@keyframes pub-scan-glow {
+    0%, 100% { opacity: 0.5; box-shadow: 0 0 8px rgba(114, 198, 190, 0.12); }
+    50% { opacity: 1; box-shadow: 0 0 18px rgba(114, 198, 190, 0.35); }
+}
+
+@keyframes pub-scan-travel {
+    0% { left: 16%; opacity: 0; }
+    15%, 85% { opacity: 1; }
+    100% { left: 81%; opacity: 0; }
+}
+
 .pub-figure img.is-loaded {
     position: relative;
 }
 
-.pub-figure:has(img.is-loaded)::before,
-.pub-figure:has(img.is-loaded)::after {
+.pub-figure:not(.is-placeholder) img.is-loaded ~ .pub-scan-art {
     opacity: 0;
-}
-
-.pub-figure:has(img.is-loaded) {
-    animation: none;
+    visibility: hidden;
 }
 
 /* hidden until decoded only when JS is active (no-JS keeps figures visible) */
 body.js .pub-figure img:not(.is-loaded) {
     opacity: 0;
+}
+
+body.js .pub-figure.is-placeholder img {
+    opacity: 0;
+    animation: none;
 }
 
 .pub-figure img.is-loaded {
@@ -2007,6 +2042,16 @@ body.js .pub-figure img:not(.is-loaded) {
     border-color: rgba(200, 164, 93, 0.5);
 }
 
+.life-photo-link {
+    display: block;
+    cursor: zoom-in;
+}
+
+.life-photo-link:focus-visible {
+    outline: 3px solid var(--gold-2);
+    outline-offset: -3px;
+}
+
 .life-photo img {
     width: 100%;
     display: block;
@@ -2042,6 +2087,7 @@ body.js .pub-figure img:not(.is-loaded) {
     right: 1.35rem;
     bottom: 1.15rem;
     z-index: 2;
+    pointer-events: none;
 }
 
 .life-photo figcaption span {

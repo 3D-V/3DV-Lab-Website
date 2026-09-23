@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="杭州电子科技大学三维视觉实验室（HDU-3DV Lab）：人工智能、计算机视觉、医学影像分析。">
     <title>实验室生活 | HDU-3DV Lab</title>
-    <link rel="stylesheet" href="styles.css?v=20260922-6">
+    <link rel="stylesheet" href="styles.css?v=20260924-1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&display=swap" rel="stylesheet">
@@ -44,35 +44,35 @@
             </div>
             <div class="life-gallery">
                 <figure class="life-photo life-photo--main reveal-item">
-                    <img src="images/life-group.jpg" alt="实验室全体成员合影">
+                    <a class="life-photo-link" href="images/life-group.jpg" data-life-photo><img src="images/life-group.jpg" alt="实验室全体成员合影"></a>
                     <figcaption>
                         <span>全家福</span>
                         <em>一群人，走得更远</em>
                     </figcaption>
                 </figure>
                 <figure class="life-photo reveal-item">
-                    <img src="images/life-dinner-round.jpg" alt="实验室聚餐合影">
+                    <a class="life-photo-link" href="images/life-dinner-round.jpg" data-life-photo><img src="images/life-dinner-round.jpg" alt="实验室聚餐合影"></a>
                     <figcaption>
                         <span>人间烟火</span>
                         <em>围桌而坐，笑语满堂</em>
                     </figcaption>
                 </figure>
                 <figure class="life-photo reveal-item">
-                    <img src="images/life-dinner-long.jpg" alt="实验室聚餐合影">
+                    <a class="life-photo-link" href="images/life-dinner-long.jpg" data-life-photo><img src="images/life-dinner-long.jpg" alt="实验室聚餐合影"></a>
                     <figcaption>
                         <span>诗与美食</span>
                         <em>认真科研的人，也认真生活</em>
                     </figcaption>
                 </figure>
                 <figure class="life-photo life-photo--uncropped reveal-item">
-                    <img src="assets/life/rainforest-group.png?v=2" alt="实验室成员在热带雨林中的集体合影" loading="lazy" decoding="async" width="603" height="403">
+                    <a class="life-photo-link" href="assets/life/rainforest-group.png?v=2" data-life-photo><img src="assets/life/rainforest-group.png?v=2" alt="实验室成员在热带雨林中的集体合影" loading="lazy" decoding="async" width="603" height="403"></a>
                     <figcaption>
                         <span>山野同行</span>
                         <em>走出实验室，一起遇见更大的世界</em>
                     </figcaption>
                 </figure>
                 <figure class="life-photo life-photo--uncropped reveal-item">
-                    <img src="assets/life/village-field-group.png" alt="实验室成员在田野中的旅行合影" loading="lazy" decoding="async" width="651" height="434">
+                    <a class="life-photo-link" href="assets/life/village-field-group.png" data-life-photo><img src="assets/life/village-field-group.png" alt="实验室成员在田野中的旅行合影" loading="lazy" decoding="async" width="651" height="434"></a>
                     <figcaption>
                         <span>田野留影</span>
                         <em>并肩看风景，也并肩向前走</em>
@@ -81,6 +81,14 @@
             </div>
         </div>
     </section>
+
+    <div class="members-photo-dialog" role="dialog" aria-modal="true" aria-hidden="true" aria-label="生活照片放大预览">
+        <button class="members-photo-close" type="button" aria-label="关闭照片">&times;</button>
+        <figure class="members-photo-stage">
+            <img alt="">
+            <figcaption class="members-photo-caption"></figcaption>
+        </figure>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -112,6 +120,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20260922-2"></script>
+    <script src="script.js?v=20260924-1"></script>
 </body>
 </html>

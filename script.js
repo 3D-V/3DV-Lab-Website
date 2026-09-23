@@ -157,7 +157,7 @@
     }
 
     /* --------------------------------------------------------
-       Member portraits — click or press Enter/Space to enlarge.
+       Member portraits and lab-life photos — enlarge on activation.
     -------------------------------------------------------- */
     const photoDialog = document.querySelector('.members-photo-dialog');
     if (photoDialog) {
@@ -176,13 +176,13 @@
             activePhotoLink = null;
         }
 
-        document.querySelectorAll('[data-member-photo]').forEach(function (link) {
+        document.querySelectorAll('[data-member-photo], [data-life-photo]').forEach(function (link) {
             link.setAttribute('aria-label', '放大查看' + link.querySelector('img').alt);
             link.addEventListener('click', function (event) {
                 event.preventDefault();
                 const photo = link.querySelector('img');
-                const card = link.closest('.members-card, .members-advisor');
-                const name = card && card.querySelector('h3, h4');
+                const card = link.closest('.members-card, .members-advisor, .life-photo');
+                const name = card && card.querySelector('h3, h4, figcaption span');
                 activePhotoLink = link;
                 enlargedPhoto.src = link.href;
                 enlargedPhoto.alt = photo.alt;
@@ -214,6 +214,14 @@
     let lastReveal = 0;
 
     function reveal(img) {
+        const button = img.closest('.pub-figure');
+        if (img.getAttribute('src').includes('placeholder.svg')) {
+            button.classList.add('is-placeholder');
+            button.setAttribute('aria-label', '框架图待补充');
+            button.disabled = true;
+            img.classList.add('is-loaded');
+            return;
+        }
         const now = performance.now();
         if (now - lastReveal > 400) revealSlot = 0; // queue drained — no artificial wait
         lastReveal = now;
@@ -225,11 +233,21 @@
         if (img.complete && img.naturalWidth > 0) { reveal(img); return; }
         img.addEventListener('load', function () { reveal(img); });
         img.addEventListener('error', function () {
-            window.setTimeout(function () { img.classList.add('is-loaded'); }, 80);
+            if (img.getAttribute('src').includes('placeholder.svg')) reveal(img);
         });
     }
 
     pubFigures.forEach(function (img, index) {
+        const button = img.closest('.pub-figure');
+        const art = document.createElement('span');
+        art.className = 'pub-scan-art';
+        art.setAttribute('aria-hidden', 'true');
+        for (let i = 0; i < 3; i++) {
+            const node = document.createElement('span');
+            node.className = 'pub-scan-node';
+            art.appendChild(node);
+        }
+        button.appendChild(art);
         if (index < 4) {
             img.loading = 'eager';
             if (index === 0) img.fetchPriority = 'high';
